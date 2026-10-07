@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "import"],
+  "env": {
+    "es2024": true,
+    "node": true
+  },
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "perf": "warn",
+    "pedantic": "off"
+  },
+  "rules": {
+    "no-await-in-loop": "warn",
+    "no-empty": "error",
+    "typescript/no-explicit-any": "error"
+  },
+  "ignorePatterns": ["node_modules", "src/db/migrations"]
+}
