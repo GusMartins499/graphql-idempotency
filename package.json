@@ -9,7 +9,8 @@
     "db:generate": "npx drizzle-kit generate --config ./drizzle.config.ts",
     "db:migrate": "npx drizzle-kit migrate --config ./drizzle.config.ts",
     "lint:fix": "oxlint --fix",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "node --test 'test/**/*.test.ts'"
   },
   "keywords": [],
   "author": "",
