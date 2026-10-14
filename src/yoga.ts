@@ -1,8 +1,9 @@
 import { createYoga } from 'graphql-yoga'
-import { db } from './db/connection.ts'
+import type { Db } from './db/connection.ts'
 import { schema } from './schema.ts'
 
-export const yoga = createYoga({
-  schema,
-  context: () => ({ db }),
-})
+export const createApp = (db: Db) =>
+  createYoga({
+    schema,
+    context: () => ({ db }),
+  })

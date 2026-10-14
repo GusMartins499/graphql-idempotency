@@ -1,6 +1,9 @@
 import { createServer } from 'node:http'
-import { yoga } from './yoga.ts'
+import { createDb } from './db/connection.ts'
+import { createApp } from './yoga.ts'
 
-createServer(yoga).listen(process.env.PORT, () => {
+const db = createDb(process.env.DB_FILE_NAME ?? 'sqlite.db')
+
+createServer(createApp(db)).listen(process.env.PORT, () => {
   console.log(`http://localhost:${process.env.PORT}/graphql`)
 })

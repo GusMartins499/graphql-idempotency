@@ -1,8 +1,7 @@
 import { drizzle } from 'drizzle-orm/node-sqlite';
 import { DatabaseSync } from 'node:sqlite';
 
-const sqlite = new DatabaseSync(process.env.DB_FILE_NAME ?? 'sqlite.db');
+export const createDb = (fileName: string) =>
+  drizzle({ client: new DatabaseSync(fileName) });
 
-export const db = drizzle({ client: sqlite });
-
-export type Db = typeof db;
+export type Db = ReturnType<typeof createDb>;
