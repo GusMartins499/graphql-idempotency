@@ -1,6 +1,6 @@
 import { createYoga } from 'graphql-yoga'
 import type { Db } from './db/connection.ts'
-import { schema } from './schema.ts'
+import { schema } from './schema/schema.ts'
 
 export const createApp = (db: Db) =>
   createYoga({
