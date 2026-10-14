@@ -29,22 +29,22 @@ const PRODUCTS = /* GraphQL */ `
 `
 
 describe('createProduct', () => {
-  it('cria um produto', async () => {
+  it('creates a product', async () => {
     const { gql } = setupTestApp()
 
     const result = await gql<{ createProduct: ProductPayload }>(
       CREATE_PRODUCT,
-      { input: { name: 'Caneca', priceCents: 2990 } },
+      { input: { name: 'Mug', priceCents: 2990 } },
     )
 
     assert.equal(result.errors, undefined)
-    assert.equal(result.data?.createProduct.name, 'Caneca')
+    assert.equal(result.data?.createProduct.name, 'Mug')
     assert.equal(result.data?.createProduct.priceCents, 2990)
   })
 
-  it('com a mesma Idempotency-Key, cria um único produto e repete a resposta', async () => {
+  it('with the same Idempotency-Key, creates a single product and replays the response', async () => {
     const { gql } = setupTestApp()
-    const variables = { input: { name: 'Caneca', priceCents: 2990 } }
+    const variables = { input: { name: 'Mug', priceCents: 2990 } }
     const headers = { 'idempotency-key': 'b3f1c0de-0000-4000-8000-000000000001' }
 
     const first = await gql<{ createProduct: ProductPayload }>(

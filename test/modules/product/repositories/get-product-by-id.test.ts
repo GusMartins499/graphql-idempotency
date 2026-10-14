@@ -5,10 +5,10 @@ import { getProductById } from '../../../../src/modules/product/repositories/get
 import { insertProduct } from '../../../../src/modules/product/repositories/insert-product.ts'
 
 describe('getProductById', () => {
-  it('devolve o produto pelo id', async () => {
+  it('returns the product by id', async () => {
     const db = setupTestDb()
     const inserted = await insertProduct(db, {
-      name: 'Caneca',
+      name: 'Mug',
       price_cents: 2990,
     })
 
@@ -17,10 +17,10 @@ describe('getProductById', () => {
     assert.deepEqual(product, inserted)
   })
 
-  it('devolve undefined quando o id não existe', async () => {
+  it('returns undefined when the id does not exist', async () => {
     const db = setupTestDb()
 
-    const product = await getProductById(db, 'inexistente')
+    const product = await getProductById(db, 'non-existent')
 
     assert.equal(product, undefined)
   })

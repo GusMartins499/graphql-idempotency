@@ -5,15 +5,15 @@ import { insertProduct } from '../../../../src/modules/product/repositories/inse
 import { listProducts } from '../../../../src/modules/product/repositories/list-products.ts'
 
 describe('listProducts', () => {
-  it('lista do mais recente para o mais antigo', async () => {
+  it('lists from newest to oldest', async () => {
     const db = setupTestDb()
     await insertProduct(db, {
-      name: 'Antigo',
+      name: 'Old',
       price_cents: 100,
       created_at: new Date('2026-01-01'),
     })
     await insertProduct(db, {
-      name: 'Novo',
+      name: 'New',
       price_cents: 200,
       created_at: new Date('2026-02-01'),
     })
@@ -22,7 +22,7 @@ describe('listProducts', () => {
 
     assert.deepEqual(
       products.map((product) => product.name),
-      ['Novo', 'Antigo'],
+      ['New', 'Old'],
     )
   })
 })
