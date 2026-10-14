@@ -5,5 +5,8 @@ import { schema } from './schema/schema.ts'
 export const createApp = (db: Db) =>
   createYoga({
     schema,
-    context: () => ({ db }),
+    context: ({ request }) => ({
+      db,
+      idempotencyKey: request.headers.get('idempotency-key'),
+    }),
   })
